@@ -8,22 +8,25 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        quantity: {
-            type: DataTypes.INTEGER,
+        skills: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        address: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        url: {
+            type: DataTypes.STRING,
             allowNull: false,
         },
     });
-
-    // Opportunities.associate = (models) => {
-    //     Opportunities.hasOne(models.OpportunityTypes);
-    //     Opportunities.hasOne(models.Categories);
-    //     Opportunities.hasOne(models.Institutions);
-    // };
 
     Opportunities.associate = (models) => {
         Opportunities.belongsTo(models.Categories);
         Opportunities.belongsTo(models.OpportunityTypes);
         Opportunities.belongsTo(models.Institutions);
+        Opportunities.belongsTo(models.Images);
     };
 
     return Opportunities;

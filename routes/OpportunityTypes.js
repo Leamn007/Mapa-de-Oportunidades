@@ -19,5 +19,24 @@ router.get("/:id", async (req, res) => {
     res.json(type);
   });
 
+router.put("/:id", async (req, res) => {
+    const id = req.params.id;
+    const { name, description} = req.body;
+    const oppTypes = await OpportunityTypes.update({ name: name, description: description}, { where: { id: id } });
+
+    res.json(oppTypes);
+});
+
+router.delete("/:id", async (req, res) => {
+const id = req.params.id;
+await OpportunityTypes.destroy({
+    where: {
+        id: id,
+    },
+});
+res.json('DELETED SUCESSFULLY');
+});
+
+
 
 module.exports = router;

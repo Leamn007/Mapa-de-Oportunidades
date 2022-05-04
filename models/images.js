@@ -1,35 +1,30 @@
-
 module.exports = (sequelize, DataTypes) => {
-    const Institutions = sequelize.define("Institutions", {
+    const Images = sequelize.define("Images", {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        description: {
+        size: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        key: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        logo: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        phone: {
+        url: {
             type: DataTypes.STRING,
             allowNull: false,
         },
     });
 
-    Institutions.associate = models => {
-        Institutions.hasMany(models.Opportunities, {
+    Images.associate = models => {
+        Images.hasOne(models.Opportunities, {
             foreignKey: {
                 allowNull: false
             }
         });
     };
 
-    return Institutions;
+    return Images;
 };

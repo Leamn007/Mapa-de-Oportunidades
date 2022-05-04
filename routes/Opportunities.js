@@ -42,4 +42,22 @@ router.get("/Institution/:institutionId", async (req, res) => {
     res.json(opportunity);
 });
 
+router.put("/:id", async (req, res) => {
+    const id = req.params.id;
+    const { name, description, skills, address, url} = req.body;
+    const opportunities = await Opportunities.update({ name: name, description: description, skills: skills, address: address, url: url}, { where: { id: id } });
+
+    res.json(opportunities);
+});
+
+router.delete("/:id", async (req, res) => {
+const id = req.params.id;
+await Opportunities.destroy({
+    where: {
+        id: id,
+    },
+});
+res.json('DELETED SUCESSFULLY');
+});
+
 module.exports = router;

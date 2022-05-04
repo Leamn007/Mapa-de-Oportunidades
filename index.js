@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -19,6 +21,9 @@ app.use("/Institutions", institutionRouter);
 
 const opportunityRouter = require("./routes/Opportunities");
 app.use("/Opportunities", opportunityRouter);
+
+const imageRouter = require("./routes/Images");
+app.use("/Images", imageRouter);
 
 db.sequelize.sync().then(() => {
     app.listen(3001, () => {
